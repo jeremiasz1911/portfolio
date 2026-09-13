@@ -3,6 +3,7 @@
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
 
+import { TechBadge } from "@/components/tech/tech-badge";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { experience } from "@/content/experience";
 import { useLanguage } from "@/i18n/language-provider";
@@ -105,6 +106,14 @@ export function ExperienceSection() {
                       </li>
                     ))}
                   </ul>
+
+                  {entry.tech && entry.tech.length > 0 ? (
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {entry.tech.map((tech) => (
+                        <TechBadge key={tech} technology={tech} size="sm" />
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
               </motion.li>
             );

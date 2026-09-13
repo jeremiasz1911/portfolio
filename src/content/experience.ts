@@ -1,4 +1,10 @@
-import { Boxes, Briefcase, Smartphone, type LucideIcon } from "lucide-react";
+import {
+  Briefcase,
+  Building2,
+  Globe,
+  Smartphone,
+  type LucideIcon,
+} from "lucide-react";
 
 import type { Dictionary } from "@/i18n/locales/pl";
 import type { TechId } from "@/content/technologies";
@@ -20,20 +26,27 @@ export const experience: ExperienceEntry[] = [
     icon: Briefcase,
     accent: "text-[var(--accent)]",
     current: true,
-    tech: ["react", "react-native", "firebase", "wordpress"],
+    tech: ["react", "react-native", "firebase", "wordpress", "python"],
   },
   {
     id: "candyweb",
     icon: Smartphone,
     accent: "text-amber-300",
     current: false,
-    tech: ["react", "react-native", "typescript"],
+    tech: ["react", "react-native", "wordpress", "typescript", "javascript"],
   },
   {
-    id: "earlier",
-    icon: Boxes,
-    accent: "text-white/40",
+    id: "softhard",
+    icon: Building2,
+    accent: "text-sky-300",
     current: false,
-    tech: ["react", "typescript", "javascript"],
+    tech: ["python", "mysql", "linux"],
+  },
+  {
+    id: "blacrea",
+    icon: Globe,
+    accent: "text-pink-300",
+    current: false,
+    tech: ["wordpress", "prestashop", "php", "javascript", "html5", "css3"],
   },
 ];

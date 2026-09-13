@@ -39,7 +39,16 @@ export type Project = {
     edges: ProjectArchitectureEdge[];
   };
   flows?: ProjectFlow[];
-  links?: { live?: string; repo?: string };
+  links?: {
+    live?: string;
+    repo?: string;
+    appStore?: string;
+    playStore?: string;
+  };
+  /** Soft brand accent for featured sections (CSS color). */
+  accent?: string;
+  /** Homepage spotlight sections (ordered). */
+  spotlight?: boolean;
   needsInfo?: boolean;
 };
 
@@ -66,17 +75,26 @@ export const projects: Project[] = [
     highlights: ["react-native", "firebase", "google-maps"],
     roles: ["mobile", "backend", "api", "uiux", "deployment"],
     shots: [
+      // Product-facing app screens (no profile / PII shots)
+      { src: "/assets/projects/powiat_9.png", frame: "phone" },
+      { src: "/assets/projects/powiat_8.png", frame: "phone" },
+      { src: "/assets/projects/powiat_6.png", frame: "phone" },
       {
         src: "/assets/projects/powiat_5.png",
         frame: "browser",
         url: "powiatdecyduje.pl/panel",
       },
-      { src: "/assets/projects/powiat_10.png", frame: "phone" },
-      { src: "/assets/projects/powiat_1.png", frame: "phone" },
-      { src: "/assets/projects/powiat_4.png", frame: "phone" },
     ],
     size: "wide",
     featured: true,
+    spotlight: true,
+    accent: "rgba(227, 6, 19, 0.22)",
+    links: {
+      live: "https://powiatdecyduje.pl",
+      appStore: "https://apps.apple.com/pl/app/powiat-decyduje/id6787748328",
+      playStore:
+        "https://play.google.com/store/apps/details?id=com.jeremiasz1911.powiatdecyduje",
+    },
     system: {
       client: "Mobile application + admin panel",
       platforms: "iOS + Android + Web admin",
@@ -86,7 +104,7 @@ export const projects: Project[] = [
       auth: "Firebase Authentication (phone / anonymous)",
       storage: "Firebase Storage",
       integrations: "Google Maps API · SMS API",
-      deployment: "App stores + hosting",
+      deployment: "App Store · Google Play · hosting",
     },
     architecture: {
       nodes: [
@@ -155,9 +173,14 @@ export const projects: Project[] = [
         frame: "browser",
         url: "perfecttune.pl/panel",
       },
+      { src: "/assets/projects/perfect_mob2.jpg", frame: "phone" },
+      { src: "/assets/projects/perfect_mob3.jpg", frame: "phone" },
+      { src: "/assets/projects/perfect_mob4.jpg", frame: "phone" },
     ],
     size: "normal",
     featured: true,
+    spotlight: true,
+    accent: "rgba(99, 102, 241, 0.22)",
     system: {
       client: "Mobile app + web panel",
       platforms: "iOS · Android · Web",
@@ -205,13 +228,28 @@ export const projects: Project[] = [
     roles: ["frontend", "backend", "api", "automation", "deployment"],
     shots: [
       {
+        src: "/assets/projects/git-machine_laptop1.png",
+        frame: "browser",
+        url: "git-machine.vercel.app",
+      },
+      {
+        src: "/assets/projects/git-machine_laptop2.png",
+        frame: "browser",
+        url: "git-machine.vercel.app/dashboard",
+      },
+      {
         src: "/assets/projects/git-machine-dashboard.png",
         frame: "browser",
         url: "git-machine.vercel.app/dashboard",
       },
+      { src: "/assets/projects/git-machine_mobile1.png", frame: "phone" },
+      { src: "/assets/projects/git-machine_mobile2.png", frame: "phone" },
+      { src: "/assets/projects/git-machine_mobile3.png", frame: "phone" },
     ],
-    size: "normal",
+    size: "wide",
     featured: true,
+    accent: "rgba(99, 102, 241, 0.2)",
+    links: { live: "https://git-machine.vercel.app" },
     system: {
       client: "Web dashboard",
       platforms: "Web",
@@ -261,14 +299,28 @@ export const projects: Project[] = [
     roles: ["frontend", "backend", "cms", "uiux"],
     shots: [
       {
+        src: "/assets/projects/ilprimo-laptop1.png",
+        frame: "browser",
+        url: "ilprimo.pl",
+      },
+      {
+        src: "/assets/projects/ilprimo-laptop2.png",
+        frame: "browser",
+        url: "ilprimo.pl/menu",
+      },
+      {
         src: "/assets/projects/il-primo-desktop.png",
         frame: "browser",
         url: "ilprimo.pl/panel",
       },
+      { src: "/assets/projects/ilprimo_mobile1.png", frame: "phone" },
+      { src: "/assets/projects/ilprimo_mobile2.png", frame: "phone" },
       { src: "/assets/projects/il-primo-mobile.png", frame: "phone" },
     ],
-    size: "normal",
+    size: "wide",
     featured: true,
+    accent: "rgba(212, 175, 55, 0.18)",
+    links: { live: "https://ilprimo.pl" },
     system: {
       client: "Admin CMS + public site",
       platforms: "Web · Mobile web",
@@ -357,6 +409,8 @@ export const projects: Project[] = [
     ],
     size: "wide",
     featured: true,
+    spotlight: true,
+    accent: "rgba(14, 165, 233, 0.22)",
     links: { live: "https://kabinyaquality.pl" },
     needsInfo: true,
     system: {
@@ -377,15 +431,78 @@ export const projects: Project[] = [
     roles: ["frontend", "uiux", "cms"],
     shots: [
       {
+        src: "/assets/projects/aquality_laptop1.png",
+        frame: "browser",
+        url: "kabinyaquality.pl",
+      },
+      {
+        src: "/assets/projects/aquality_laptop2.png",
+        frame: "browser",
+        url: "kabinyaquality.pl",
+      },
+      {
+        src: "/assets/projects/aquality_laptop3.png",
+        frame: "browser",
+        url: "kabinyaquality.pl",
+      },
+      {
         src: "/assets/projects/aquality-desktop.png",
         frame: "browser",
         url: "kabinyaquality.pl",
       },
     ],
     size: "normal",
-    featured: false,
+    featured: true,
+    accent: "rgba(82, 166, 140, 0.22)",
     links: { live: "https://kabinyaquality.pl" },
     needsInfo: true,
+    system: {
+      client: "Company site + shop",
+      platforms: "Web",
+      frontend: "WordPress",
+      deployment: "kabinyaquality.pl",
+    },
+  },
+  {
+    id: "ekspresja",
+    slug: "ekspresja",
+    categories: ["web", "systems"],
+    year: "2025",
+    tech: ["nextjs", "react", "typescript", "UI/UX"],
+    highlights: ["nextjs", "react", "typescript"],
+    roles: ["frontend", "backend", "uiux", "deployment"],
+    shots: [
+      {
+        src: "/assets/projects/ekspresja_laptop1.png",
+        frame: "browser",
+        url: "ekspresja.net/kalendarz",
+      },
+      {
+        src: "/assets/projects/ekspresja_laptop2.png",
+        frame: "browser",
+        url: "ekspresja.net/login",
+      },
+      {
+        src: "/assets/projects/ekspresja_laptop3.png",
+        frame: "browser",
+        url: "ekspresja.net",
+      },
+      { src: "/assets/projects/ekspresja_mobile1.png", frame: "phone" },
+      { src: "/assets/projects/ekspresja_mobile2.png", frame: "phone" },
+      { src: "/assets/projects/ekspresja_mobile3.png", frame: "phone" },
+    ],
+    size: "wide",
+    featured: true,
+    spotlight: true,
+    accent: "rgba(147, 51, 234, 0.22)",
+    links: { live: "https://ekspresja.net" },
+    system: {
+      client: "Public site + parent panel",
+      platforms: "Web · Mobile web",
+      frontend: "Next.js / React",
+      backend: "Auth + parent panel",
+      deployment: "ekspresja.net",
+    },
   },
   {
     id: "fbFeed",
@@ -443,6 +560,10 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjects = projects.filter((project) => project.featured);
+export const spotlightProjects = projects.filter((project) => project.spotlight);
+export const moreFeaturedProjects = featuredProjects.filter(
+  (project) => !project.spotlight,
+);
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);

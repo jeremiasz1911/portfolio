@@ -17,7 +17,7 @@ export const profile = {
     "Freelancer",
   ],
   email: "hello@example.com",
-  github: "https://github.com/",
-  linkedin: "https://linkedin.com/",
+  github: "https://github.com/jeremiasz1911",
+  linkedin: "https://www.linkedin.com/in/jeremiaszwisniewski/",
   cv: "/cv.pdf",
 };

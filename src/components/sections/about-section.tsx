@@ -1,13 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { GraduationCap } from "lucide-react";
 import Image from "next/image";
 
+import { TechBadge } from "@/components/tech/tech-badge";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { profilePhoto } from "@/content/profile";
 import { useMotionEnabled } from "@/hooks/use-motion-enabled";
 import { useLanguage } from "@/i18n/language-provider";
 import { ease, viewportOnce } from "@/lib/motion";
+
+const toolchain = ["git", "vscode", "cursor"] as const;
+
+const aboutPhoto = {
+  src: "/assets/images/cyber.jpg",
+  width: 5184,
+  height: 3456,
+} as const;
 
 export function AboutSection() {
   const { t } = useLanguage();
@@ -15,20 +24,24 @@ export function AboutSection() {
 
   return (
     <section id="about" className="scroll-mt-28 py-16 sm:py-24 lg:py-28">
-      <div className="grid items-center gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
-        <div className="relative mx-auto w-full max-w-[16rem] lg:mx-0 lg:max-w-[18rem]">
+      <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+        <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:max-w-none">
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-[10%] -z-10 rounded-full bg-[radial-gradient(circle,rgba(94,233,255,0.14),transparent_70%)] blur-2xl"
+            className="pointer-events-none absolute inset-[8%] -z-10 rounded-[2rem] bg-[radial-gradient(circle,rgba(94,233,255,0.16),transparent_70%)] blur-2xl"
           />
-          <div className="relative aspect-[1086/1448] overflow-hidden rounded-2xl bg-[#06080d]">
+          <div className="relative aspect-[3/2] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#06080d] shadow-[0_30px_60px_-36px_rgba(0,0,0,0.9)]">
             <Image
-              src={profilePhoto.src}
+              src={aboutPhoto.src}
               alt={t.about.photoAlt}
-              width={profilePhoto.width}
-              height={profilePhoto.height}
-              sizes="(max-width: 1024px) 70vw, 280px"
-              className="h-full w-full object-contain object-bottom"
+              width={aboutPhoto.width}
+              height={aboutPhoto.height}
+              sizes="(max-width: 1024px) 90vw, 420px"
+              className="h-full w-full object-cover object-center"
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080b11]/50 via-transparent to-transparent"
             />
           </div>
         </div>
@@ -40,7 +53,21 @@ export function AboutSection() {
             subtitle={t.about.lead}
           />
 
-          <ul className="mt-10 max-w-lg space-y-4">
+          <motion.div
+            initial={motionOn ? { opacity: 0, y: 10 } : false}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOnce}
+            transition={{ duration: 0.4, ease }}
+            className="mt-6 inline-flex max-w-full items-center gap-2.5 rounded-full border border-[var(--accent)]/25 bg-[var(--accent)]/10 px-3.5 py-2"
+          >
+            <GraduationCap className="h-4 w-4 shrink-0 text-[var(--accent)]" aria-hidden />
+            <div className="min-w-0">
+              <p className="text-[13px] font-medium text-white">{t.about.education}</p>
+              <p className="text-[11px] text-white/50">{t.about.educationDetail}</p>
+            </div>
+          </motion.div>
+
+          <ul className="mt-8 max-w-lg space-y-4">
             {t.about.statements.map((statement, index) => (
               <motion.li
                 key={statement}
@@ -58,6 +85,18 @@ export function AboutSection() {
               </motion.li>
             ))}
           </ul>
+
+          <motion.div
+            initial={motionOn ? { opacity: 0, y: 8 } : false}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOnce}
+            transition={{ duration: 0.4, delay: 0.12, ease }}
+            className="mt-6 flex flex-wrap gap-2"
+          >
+            {toolchain.map((tech) => (
+              <TechBadge key={tech} technology={tech} size="sm" />
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

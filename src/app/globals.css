@@ -215,7 +215,7 @@ body {
   font-weight: 600;
   line-height: 1.15;
   letter-spacing: -0.03em;
-  text-wrap: pretty;
+  text-wrap: balance;
   color: #fff;
 }
 

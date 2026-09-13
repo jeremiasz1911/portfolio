@@ -41,6 +41,7 @@ export const stackGroups: StackGroup[] = [
     items: [
       { id: "firebase", priority: "primary" },
       { id: "cloud-functions", priority: "primary" },
+      { id: "python", priority: "primary" },
       { id: "nodejs", priority: "secondary" },
       { id: "php", priority: "secondary" },
     ],
@@ -50,8 +51,9 @@ export const stackGroups: StackGroup[] = [
     items: [
       { id: "firestore", priority: "primary" },
       { id: "firebase-auth", priority: "primary" },
+      { id: "mysql", priority: "primary" },
+      { id: "firebird", priority: "secondary" },
       { id: "firebase-storage", priority: "secondary" },
-      { id: "mysql", priority: "secondary" },
     ],
   },
   {
@@ -66,6 +68,7 @@ export const stackGroups: StackGroup[] = [
     id: "cms",
     items: [
       { id: "wordpress", priority: "primary" },
+      { id: "prestashop", priority: "primary" },
       { id: "php", priority: "secondary" },
     ],
   },
@@ -75,6 +78,14 @@ export const stackGroups: StackGroup[] = [
       { id: "git", priority: "primary" },
       { id: "github", priority: "primary" },
       { id: "github-actions", priority: "primary" },
+      { id: "cursor", priority: "primary" },
+      { id: "vscode", priority: "primary" },
+      { id: "linux", priority: "primary" },
+      { id: "windows", priority: "secondary" },
+      { id: "jest", priority: "secondary" },
+      { id: "vitest", priority: "secondary" },
+      { id: "claude", priority: "secondary" },
+      { id: "gemini", priority: "secondary" },
       { id: "docker", priority: "secondary" },
     ],
   },

@@ -4,23 +4,15 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
+import { FeaturedProject } from "@/components/projects/featured-project";
 import { ProjectCard } from "@/components/projects/project-card";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { featuredProjects } from "@/content/projects";
+import { moreFeaturedProjects, spotlightProjects } from "@/content/projects";
 import { useLanguage } from "@/i18n/language-provider";
 import { ease } from "@/lib/motion";
 
-const SPOTLIGHT_IDS = new Set(["powiat", "perfectTune", "aqualityConfigurator"]);
-
 export function ProjectsSection() {
   const { t } = useLanguage();
-
-  const spotlights = featuredProjects.filter((project) =>
-    SPOTLIGHT_IDS.has(project.id),
-  );
-  const more = featuredProjects.filter(
-    (project) => !SPOTLIGHT_IDS.has(project.id),
-  );
 
   return (
     <section id="work" className="scroll-mt-28 py-16 sm:py-28 lg:py-32">
@@ -40,43 +32,32 @@ export function ProjectsSection() {
         </Link>
       </div>
 
-      {/* Featured / spotlight */}
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-        transition={{ duration: 0.55, ease }}
-        className="mt-8 space-y-3 sm:mt-12 sm:grid sm:grid-cols-2 sm:gap-4 sm:space-y-0 lg:mt-14 lg:gap-5"
-      >
-        {spotlights.map((project, index) => (
-          <div
+      <div className="mt-10 space-y-6 sm:mt-14 sm:space-y-8 lg:space-y-10">
+        {spotlightProjects.map((project, index) => (
+          <motion.div
             key={project.id}
-            className={
-              index === 0 ? "sm:col-span-2 lg:col-span-2" : undefined
-            }
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-8% 0px -8% 0px" }}
+            transition={{ duration: 0.55, delay: index * 0.04, ease }}
           >
-            <ProjectCard
+            <FeaturedProject
               project={project}
-              priority={index < 2}
-              variant={index === 0 ? "spotlight" : "tile"}
+              priority={index === 0}
+              reverse={index % 2 === 1}
             />
-          </div>
+          </motion.div>
         ))}
-      </motion.div>
+      </div>
 
-      {/* Compact list for remaining featured */}
-      {more.length > 0 ? (
-        <div className="mt-8 sm:mt-10">
-          <p className="mb-3 text-[11px] font-medium tracking-[0.2em] text-white/35 uppercase">
+      {moreFeaturedProjects.length > 0 ? (
+        <div className="mt-12 sm:mt-16">
+          <p className="mb-4 text-[11px] font-medium tracking-[0.2em] text-white/35 uppercase">
             {t.projects.moreLabel}
           </p>
-          <div className="space-y-2.5">
-            {more.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                variant="row"
-              />
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3.5">
+            {moreFeaturedProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} variant="mini" />
             ))}
           </div>
         </div>
