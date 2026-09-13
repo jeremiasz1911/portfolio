@@ -13,9 +13,9 @@ import { ease, viewportOnce } from "@/lib/motion";
 const toolchain = ["git", "vscode", "cursor"] as const;
 
 const aboutPhoto = {
-  src: "/assets/images/cyber.jpg",
-  width: 5184,
-  height: 3456,
+  src: "/assets/images/cyber.avif",
+  width: 1738,
+  height: 1160,
 } as const;
 
 export function AboutSection() {
